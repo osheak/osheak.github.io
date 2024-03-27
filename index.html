@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Web Page Mock Up</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
     <header>
@@ -16,48 +16,86 @@
             <div class="container">
                 <a href="#" class="brand-logo hide-on-small-only">Cuyahoga Valley National Park</a>
                 <a href="#" class="brand-logo hide-on-med-and-up">CVNP</a>
-                <a href="#" class="sidenav-trigger"data-target ="mobile-menu">
+                <a href="#" class="sidenav-trigger" data-target ="mobile-menu">
                     <i class="material-icons">menu</i>
                 </a>
                 <ul class="right hide-on-med-and-down">
                     <li><a href="bring.html">What to Bring</a></li>
                     <li><a href="tips.html">Hiking Safety Tips</a></li>
-                    <li><a href="#">Contact</a></li>
+                    <li><a href="index.html">Home</a></li>
                 </ul>
                 <ul class="sidenav grey lighten-2" id ="mobile-menu">
                     <li><a href="bring.html">What to Bring</a></li>
                     <li><a href="tips.html">Hiking Safety Tips</a></li>
-                    <li><a href="#">Contact</a></li>
+                    <li><a href="index.html">Home</a></li>
                 </ul>
             </div>
         </nav>
     </header>
-    
-    <div class="container">
+    <section class="container section" id="information">
         <div class="row">
-            <div class="col s12 m3" id="control-panel">
-                <h5>Data Information</h5>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio officiis, tempore neque exercitationem illo 
-                    architecto consequuntur alias blanditiis possimus quas eveniet asperiores aspernatur voluptatibus maiores sed doloremque 
-                    quam labore voluptate!</p>
-                <h5>API Information</h5>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio officiis, tempore neque exercitationem illo 
-                    architecto consequuntur alias blanditiis possimus quas eveniet asperiores aspernatur voluptatibus maiores sed doloremque 
-                    quam labore voluptate!</p>
+            <div class="col s12 m4">
+                <ul class="tabs">
+                    <li class="tab col s6">
+                        <a href="#data" class="indigo-text text-darken-4">Data Information</a>
+                    </li>
+                    <li class="tab col s6">
+                        <a href="#api" class="indigo-text text-darken-4">API Information</a>
+                    </li>
+                </ul>
+                <div class="col s12" id="data">
+                    <p class="flow-text indigo-text text-darken-4">Data Information</p>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet facere explicabo vero. 
+                        Error fuga placeat tenetur dolor explicabo saepe, illum aperiam laudantium sint quibusdam atque illo ab facere dolorem veritatis?
+                    </p>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet facere explicabo vero. 
+                        Error fuga placeat tenetur dolor explicabo saepe, illum aperiam laudantium sint quibusdam atque illo ab facere dolorem veritatis?
+                    </p>
+                </div>
+                <div class="col s12" id="api">
+                    <p class="flow-text indigo-text text-darken-4">API Information</p>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet facere explicabo vero. 
+                        Error fuga placeat tenetur dolor explicabo saepe, illum aperiam laudantium sint quibusdam atque illo ab facere dolorem veritatis?
+                    </p>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet facere explicabo vero. 
+                        Error fuga placeat tenetur dolor explicabo saepe, illum aperiam laudantium sint quibusdam atque illo ab facere dolorem veritatis?
+                    </p>
+                </div>
             </div>
-            <div class="col s12 m9" id="map">
-                <img class="responsive-img" src="img/CUVAParkMap.webp" alt="">
-                <figcaption>Map from National Park Service (NPS.gov)</figcaption>
+            <div class="col s12 m8" id="map">
+                <figure>
+                    <img class="responsive-img" src="img/CUVAParkMap.webp" alt="">
+                    <figcaption>Map from National Park Service (NPS.gov)</figcaption>
+                </figure>
             </div>
         </div>
-    </div>
+        <div class="row">
+            <div class="col s12 m6 " id="mwd">
+                <p></p>
+            </div>
+            <div class="col s12 m6" id="mht">
+                <p></p>
+            </div>
+        </div>
+    </section>
     <!-- Compiled and minified JavaScript -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
   <script>
+    function dispMapsz(){
+        var map_div = $('#map');
+        var map_height = map_div.outerHeight()
+        var map_width = map_div.outerWidth()
+        $('#mwd').html("Width of Map: " + map_width)
+        $('#mht').html("Height of Map: " + map_height)
+    }
     $(document).ready(function(){
         $('.sidenav').sidenav();
+        $('.tabs').tabs();
+        dispMapsz();
     });
+    $(window).resize(dispMapsz);
+    
   </script>
 </body>
 </html>
