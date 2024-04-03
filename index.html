@@ -49,6 +49,7 @@
                 drawnItems.addLayer(layer);
             });
 
+            //Add GeoJSON
             //var test = '{"type": "FeatureCollection","features": [{"type": "Feature","properties": {},"geometry": {"coordinates": [[[-76.94891653004191,38.98880666909892],[-76.94891653004191,38.98769754807205],[-76.94747886600985,38.98769754807205],[-76.94747886600985,38.98880666909892],[-76.94891653004191,38.98880666909892]]],"type": "Polygon"}}]}'
             //var test2 =JSON.parse(test)
             //L.geoJSON(test2).addTo(map);
@@ -58,6 +59,10 @@
                   // Add GeoJSON data to the map
                   L.geoJSON(geojsonData).addTo(map).bindPopup('University of Maryland Campus');
               }).catch(error => {console.error('Error loading GeoJSON:', error);});
+
+            //Geocoder
+            var osmGeocoder = new L.Control.OSMGeocoder();
+            map.addControl(osmGeocoder);
 
         //     map.on('click', function(e) {
         //         drawnItems.eachLayer(function(layer) {
