@@ -1,101 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Web Page Mock Up</title>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Leaflet</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"/>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.css"/>
+  </head>
+  <body>
+    <div id="map" style="width: 100%; height: 800px;"></div>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-</head>
-<body>
-    <header>
-        <nav class="nav-wrapper green lighten-2">
-            <div class="container">
-                <a href="#" class="brand-logo hide-on-small-only">Cuyahoga Valley National Park</a>
-                <a href="#" class="brand-logo hide-on-med-and-up">CVNP</a>
-                <a href="#" class="sidenav-trigger" data-target ="mobile-menu">
-                    <i class="material-icons">menu</i>
-                </a>
-                <ul class="right hide-on-med-and-down">
-                    <li><a href="bring.html">What to Bring</a></li>
-                    <li><a href="tips.html">Hiking Safety Tips</a></li>
-                    <li><a href="index.html">Home</a></li>
-                </ul>
-                <ul class="sidenav grey lighten-2" id ="mobile-menu">
-                    <li><a href="bring.html">What to Bring</a></li>
-                    <li><a href="tips.html">Hiking Safety Tips</a></li>
-                    <li><a href="index.html">Home</a></li>
-                </ul>
-            </div>
-        </nav>
-    </header>
-    <section class="container section" id="information">
-        <div class="row">
-            <div class="col s12 m4">
-                <ul class="tabs">
-                    <li class="tab col s6">
-                        <a href="#data" class="indigo-text text-darken-4">Data Information</a>
-                    </li>
-                    <li class="tab col s6">
-                        <a href="#api" class="indigo-text text-darken-4">API Information</a>
-                    </li>
-                </ul>
-                <div class="col s12" id="data">
-                    <p class="flow-text indigo-text text-darken-4">Data Information</p>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet facere explicabo vero. 
-                        Error fuga placeat tenetur dolor explicabo saepe, illum aperiam laudantium sint quibusdam atque illo ab facere dolorem veritatis?
-                    </p>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet facere explicabo vero. 
-                        Error fuga placeat tenetur dolor explicabo saepe, illum aperiam laudantium sint quibusdam atque illo ab facere dolorem veritatis?
-                    </p>
-                </div>
-                <div class="col s12" id="api">
-                    <p class="flow-text indigo-text text-darken-4">API Information</p>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet facere explicabo vero. 
-                        Error fuga placeat tenetur dolor explicabo saepe, illum aperiam laudantium sint quibusdam atque illo ab facere dolorem veritatis?
-                    </p>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet facere explicabo vero. 
-                        Error fuga placeat tenetur dolor explicabo saepe, illum aperiam laudantium sint quibusdam atque illo ab facere dolorem veritatis?
-                    </p>
-                </div>
-            </div>
-            <div class="col s12 m8" id="map">
-                <figure>
-                    <img class="responsive-img" src="img/CUVAParkMap.webp" alt="">
-                    <figcaption>Map from National Park Service (NPS.gov)</figcaption>
-                </figure>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col s12 m6 " id="mwd">
-                <p></p>
-            </div>
-            <div class="col s12 m6" id="mht">
-                <p></p>
-            </div>
-        </div>
-    </section>
-    <!-- Compiled and minified JavaScript -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
-  <script>
-    function dispMapsz(){
-        var map_div = $('#map');
-        var map_height = map_div.outerHeight()
-        var map_width = map_div.outerWidth()
-        $('#mwd').html("Width of Map: " + map_width)
-        $('#mht').html("Height of Map: " + map_height)
-    }
-    $(document).ready(function(){
-        $('.sidenav').sidenav();
-        $('.tabs').tabs();
-        dispMapsz();
-    });
-    $(window).resize(dispMapsz);
-    
-  </script>
-</body>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.js"></script>
+    <script>
+        function init(){
+            var lat = 38.986675;
+            var lon = -76.939507;
+            var zoomlevel = 16;
+            var map = L.map('map', {center: [lat, lon], zoom: zoomlevel});
+
+            L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(map);
+            var Icon = L.icon({iconUrl: 'school.png', iconSize: [32, 32]});
+            L.marker([lat, lon], {icon:Icon}).addTo(map).bindPopup('University of Maryland');
+
+            //Create Tool Bar
+            var drawnItems = new L.FeatureGroup();
+            map.addLayer(drawnItems);
+
+            var drawControl = new L.Control.Draw({
+                edit: {
+                    featureGroup: drawnItems
+                },
+                draw: {
+                    polygon: {
+                        allowIntersection: false,
+                        showArea: true
+                    }
+                }
+            });
+            map.addControl(drawControl);
+
+            map.on(L.Draw.Event.CREATED, function (e) {
+                var layer = e.layer;
+                drawnItems.addLayer(layer);
+            });
+
+        //     map.on('click', function(e) {
+        //         drawnItems.eachLayer(function(layer) {
+        //             if (layer instanceof L.Marker && layer.getBounds().contains(e.latlng)) {
+        //                 drawnItems.removeLayer(layer);
+        //             } else if (layer instanceof L.Polygon && layer.getBounds().contains(e.latlng)) {
+        //                 drawnItems.removeLayer(layer);
+        //             }
+        //         });
+        //     });
+        }
+        
+        
+        window.onload = init;
+
+    </script>
+  </body>
 </html>
