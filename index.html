@@ -4,13 +4,74 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Leaflet</title>
+    <title>Leaflet Lab: University of Maryland Map</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.css"/>
     <link rel="stylesheet" href="Control.OSMGeocoder.css"/>
   </head>
   <body>
-    <div id="map" style="width: 100%; height: 800px;"></div>
+    <header>
+        <nav class="nav-wrapper red darken-2">
+            <div class="container">
+                <a href="#" class="brand-logo hide-on-small-only">University of Maryland Campus</a>
+                <a href="#" class="brand-logo hide-on-med-and-up">U Maryland</a>
+                <a href="#" class="sidenav-trigger" data-target ="mobile-menu">
+                    <i class="material-icons">menu</i>
+                </a>
+            </div>
+        </nav>
+    </header>
+    <section class="container section">
+        <div class="row">
+            <div class="col s12 m4">
+                <div class="col s12" id="data">
+                    <p class="flow-text red-text text-darken-4">Facts</p>
+                    <p> 
+                        <ul>
+                            <li>40,800+ students </li>
+                            <li>12 schools and colleges</li>
+                            <li>106 undergraduate majors, 118 master's programs and 85 doctoral programs</li>
+                            <li>No. 19 public national university and No. 46 overall—U.S. News & World Report</li>
+                            <li>No. 12 among U.S. public institutions ranked as Best Global Schools—U.S. News & World Report</li>
+                          </ul>
+                    </p>
+                        <sub>Info from https://www.umd.edu/rankings-and-fast-facts</sub>
+                    <p>
+                    </p>
+                </div>
+                <div class="col s12" id="api">
+                    <p class="flow-text red-text text-darken-4">Important Locations</p>
+                    <p>
+                        <img src="school.png" alt="Description of the image" width="25" height="25"> Office of Admissions: 7999 Regents Dr, College Park, MD 20740
+                    </p>
+                    <p>
+                        <img src="diet.png" alt="Description of the image" width="25" height="25">South Campus Dining Hall: 7093 Preinkert Dr, College Park, MD 20740
+                    </p>
+                    <p>
+                        <img src="gym.png" alt="Description of the image" width="25" height="25">Recreation Center: 4128 Valley Dr, College Park, MD 20742
+                    </p>
+                </div>
+            </div>
+            <div class="col s12 m8" id="map">
+                <div id="map" style="width: 100%; height: 800px;"></div>
+            </div>
+        </div>
+    </div>
+    <footer class="page-footer red darken-2">
+        <p>
+           Icon Attribution:
+        </p>
+        <p>
+            <a href="https://www.flaticon.com/free-icons/food" title="food icons">Food icons created by Freepik - Flaticon</a>, 
+        
+            <a href="https://www.flaticon.com/free-icons/gym" title="gym icons">Gym icons created by Freepik - Flaticon</a>,
+        
+            <a href="https://www.flaticon.com/free-icons/admission" title="Admission icons">Admission icons created by Uniconlabs - Flaticon</a>
+        </p>
+      </footer>
 
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.js"></script>
@@ -45,9 +106,15 @@
             var layerControl = new L.control.layers(baseMaps).addTo(map);
             defaultLayer.addTo(map);
 
-            //Add Marker
-            var Icon = L.icon({iconUrl: 'school.png', iconSize: [32, 32]});
-            L.marker([lat, lon], {icon:Icon}).addTo(map).bindPopup('University of Maryland');
+            // Add Admissions Marker 
+            var Icon = L.icon({iconUrl:'school.png', iconSize: [32, 32]});
+            L.marker([lat, lon], {icon:Icon}).addTo(map).bindPopup('University of Maryland Admissions');
+            //Add South Dining Hall Marker
+            var Icon = L.icon({iconUrl:'diet.png', iconSize: [32, 32]});
+            L.marker([38.983170, -76.944862], {icon:Icon}).addTo(map).bindPopup('South Campus Dining Hall');
+            //Recreation Center
+            var Icon = L.icon({iconUrl:'gym.png', iconSize: [32, 32]});
+            L.marker([38.992962, -76.943047], {icon:Icon}).addTo(map).bindPopup('South Campus Dining Hall');
 
             //Create Tool Bar
             var drawnItems = new L.FeatureGroup();
