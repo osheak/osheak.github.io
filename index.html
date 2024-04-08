@@ -153,6 +153,14 @@
             var osmGeocoder = new L.Control.OSMGeocoder();
             map.addControl(osmGeocoder);
 
+	    //Add Library geojson from local flask server
+	    fetch('http://localhost:5000/geojsons/library.geojson')
+              .then(response => response.json())
+              .then(geojsonData => {
+                  // Add GeoJSON data to the map
+                  L.geoJSON(geojsonData).addTo(map).bindPopup('University of Maryland Campus Library');
+              }).catch(error => {console.error('Error loading GeoJSON:', error);});
+
         //     map.on('click', function(e) {
         //         drawnItems.eachLayer(function(layer) {
         //             if (layer instanceof L.Marker && layer.getBounds().contains(e.latlng)) {
