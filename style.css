@@ -1,5 +1,118 @@
-/* styles.css */
-.description {
-    font-family: 'Courier New', monospace;
-    font-size: 16px;
+#container {
+    width: 960px;
+    margin: 0 auto;
+}
+
+#header {
+    height: 180px;
+    margin: 10px 0 0 0;
+    background: url(images/patima.jpg);
+}
+
+#content {
+    border-right: 15px solid blue;
+    border-left: 15px solid blue;
+    border-bottom: 15px solid blue;
+    padding: 15px 20px;
+}
+
+#movies {
+    border-right: 15px solid blue;
+    border-left: 15px solid blue;
+    padding: 15px 20px;
+}
+
+#books {
+    border-right: 15px solid blue;
+    border-left: 15px solid blue;
+    padding: 15px 20px;
+}
+
+table {
+    width: 75%;
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 2px solid black;
+}
+
+th, td {
+    padding: 5px;
+    text-align: left;
+}
+
+th {
+    background-color: #0980f0;
+}
+
+#quote {
+    border-right: 15px solid blue;
+    border-left: 15px solid blue;
+    border-bottom: 15px solid blue;
+    padding: 15px 20px;
+}
+
+#nav {
+    width: 960px;
+    overflow: hidden;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+#nav a {
+    width: 191px;
+    height: 35px;
+    float: left;
+    padding: 12px 0 0 0;
+    background: url(images/nav.jpg);
+    border-right: 1px outset #006666;
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+    color: yellow;
+}
+
+#portfolio {
+    border-right: 15px solid blue;
+    border-left: 15px solid blue;
+    border-bottom: 15px solid blue;
+    padding: 15px 20px;
+}
+
+.portfolio-item img {
+    width: 100%; 
+    height: auto; 
+    max-width: 600px; 
+    display: block; 
+    margin: 0 auto; 
+}
+
+p {
+    font-family: 'Arial';
+    font-size:20px;
+}
+
+.Gallery {
+    border-right: 15px solid blue;
+    border-left: 15px solid blue;
+    border-bottom: 15px solid blue;
+    padding: 15px 20px; 
+}
+
+.Address {
+    border-right: 15px solid blue;
+    border-left: 15px solid blue;
+    border-bottom: 15px solid blue;
+    padding: 15px 20px; 
+}
+
+#nav a:hover {
+    background: url(images/nav_hover.jpg);
+    color: magenta;
+}
+
+#footer {
+    color: blue;
+    text-align: center;
 }
