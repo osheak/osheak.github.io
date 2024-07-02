@@ -2,40 +2,266 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Home Page</title>
-    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Service areas near me</title>
+    <link href="style3.css" rel="stylesheet">
+    <script>
+        (g=>{var h,a,k,p="The Google Maps JavaScript API",c="google",l="importLibrary",q="__ib__",m=document,b=window;b=b[c]||(b[c]={});var d=b.maps||(b.maps={}),r=new Set,e=new URLSearchParams,u=()=>h||(h=new Promise(async(f,n)=>{await (a=m.createElement("script"));e.set("libraries",[...r]+"");for(k in g)e.set(k.replace(/[A-Z]/g,t=>"_"+t[0].toLowerCase()),g[k]);e.set("callback",c+".maps."+q);a.src=`https://maps.${c}apis.com/maps/api/js?`+e;d[q]=f;a.onerror=()=>h=n(Error(p+" could not load."));a.nonce=m.querySelector("script[nonce]")?.nonce||"";m.head.append(a)}));d[l]?console.warn(p+" only loads once. Ignoring:",g):d[l]=(f,...n)=>r.add(f)&&u().then(()=>d[l](f,...n))})({
+          key: "AIzaSyB7iRZnBpd9FRv9ssFL3H15u3suvZBdcJ0", v: "3.55",
+        });
+    </script>
+    <script>
+        var map;
+        var currentLocation;
+        var locDenied = 0;
+        var directionsDisplay;
+        var directionsService;
+
+        //1. first show map
+        async function initMap() {
+            const { Map } = await google.maps.importLibrary("maps");
+            map = new Map(document.getElementById('mapCanvas'), {
+                zoom: 14,
+                center: new google.maps.LatLng(49.19598, -123.177582),
+                mapTypeId: 'roadmap'
+            });
+
+            //1.1. add your current location
+            if (navigator.geolocation) {
+                // use the geolocation API and get your current location
+                navigator.geolocation.getCurrentPosition(showPosition, locationError);
+            } else {
+                alert("Geolocation service not supported on this device.");
+                return;
+            }
+
+            //1.2. create icon group so that you can add them as markers or as legend to the map
+            // the following defines all of the icons, with the name indicating the description and
+            // image indicating the icon shape.
+            // The following represents a full entry. Make sure you remove or replace the entire entry
+            //    postoffice: {
+            //        name: "Post Office",
+            //        image: iconwebsite + 'post_office_maps.png'
+            //    },
+            //
+
+            var iconwebsite = "https://maps.google.com/mapfiles/kml/shapes/";
+            var icons = {
+                airport: {
+                    name: "Vancouver International Airport",
+                    image: iconwebsite + 'airports_maps.png'
+                },
+                park: {
+                    name: "Stanley Park",
+                    image: iconwebsite + 'parks_maps.png'
+                },
+				hotel: {
+					name: "Pan Pacific Vancouver Hotel",
+					image: iconwebsite + 'lodging_maps.png'
+				},
+                coffee: {
+                    name: "Prototype Coffee",
+                    image: iconwebsite + 'coffee_maps.png'
+                },
+				brunch: {
+					name: "Jam Cafe",
+					image: iconwebsite + 'dining_maps.png'
+				},
+                dinner: {
+                    name: "La Taqueria Pinche",
+                    image: iconwebsite + 'snack_bar_maps.png'
+                },
+                icecream: {
+                    name: "Rain or Shine Ice Cream",
+                    image: iconwebsite + 'snowflake_simple_maps.png'
+                },
+                attraction: {
+                    name: "Capilanp Suspension Bridge Park",
+                    image: iconwebsite + 'poi_maps.png'
+                },
+                hike: {
+                    name: "St. Mark's Summit",
+                    image: iconwebsite + 'hiker_maps.png'
+                },
+                beach: {
+                    name: "Kitsilano Beach",
+                    image: iconwebsite + 'swimming_maps.png'
+                }
+            };
+
+            // This creates the legend
+            var legend = document.getElementById('legend');
+            for (var key in icons) {
+				var type = icons[key];
+				var name = type.name;
+				var image = type.image;
+				var div = document.createElement('div');
+				div.innerHTML = '<img src="' + image + '"> ' + name;
+				legend.appendChild(div);
+            }
+
+            // Add the legend to the map
+            map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(legend);
+
+            // 1.3. Add all of the feature markers to the map
+
+            // first define all of your places
+            var features = [{
+                position: new google.maps.LatLng(49.19598, -123.177582),
+                type: 'airport'
+            }, {
+				position: new google.maps.LatLng(49.29894, -123.14014),
+				type: 'park'
+			}, {
+				position: new google.maps.LatLng(49.2878, -123.1135),
+				type: 'hotel'
+			}, {
+                position: new google.maps.LatLng(49.281109, -123.084953),
+                type: 'coffee'
+            }, {
+				position: new google.maps.LatLng(49.28036, -123.10973),
+				type: 'brunch'
+			}, {
+				position: new google.maps.LatLng(49.28287, -123.11071),
+				type: 'dinner'
+			}, {
+                position: new google.maps.LatLng(49.2678, -123.14861),
+                type: 'icecream'
+            }, {
+                position: new google.maps.LatLng(49.341431, -123.11393),
+                type: 'attraction'
+            }, {
+                position: new google.maps.LatLng(49.34045, -123.26699),
+                type: 'hike'
+            }, {
+				position: new google.maps.LatLng(49.28167, -123.13964),
+				type: 'beach'
+			}];
+
+            // function to add markers to the map
+            function addMarker(feature) {
+                var marker = new google.maps.Marker({
+                    position: feature.position,
+                    icon: icons[feature.type].image,
+                    map: map
+                });
+            }
+
+            // add all features to the map
+            var len = features.length;
+            for (var i = 0; i < len; i++) {
+                addMarker(features[i]);
+            }
+
+            //1.4. Add direction service and display to the map
+            directionsService = new google.maps.DirectionsService();
+            directionsDisplay = new google.maps.DirectionsRenderer();
+            directionsDisplay.setMap(map);
+        }
+
+        // function to show your current location
+        function showPosition(pos) {
+            lat = pos.coords.latitude;
+            lon = pos.coords.longitude;
+
+            currentLocation = new google.maps.LatLng(lat, lon);
+            map.setCenter(currentLocation);
+
+            var infowindow = new google.maps.InfoWindow({
+                map: map,
+                position: currentLocation,
+                content: "your location"
+            });
+        }
+
+        // function to handle location service error
+        function locationError(error) {
+            switch (error.code) {
+                case error.PERMISSION_DENIED:
+                    alert("Geolocation access denied");
+                    locDenied = 1;
+                    break;
+
+                case error.POSITION_UNAVAILABLE:
+                    alert("Geolocation is unavailable.");
+                    break;
+
+                case error.TIMEOUT:
+                    alert("Time out to get geolocation.");
+                    break;
+
+                default:
+                    alert("Unknown error in geolocation.");
+                    break;
+            }
+
+            var defaultLocation = new google.maps.LatLng(38.98707, -76.94253); // university of maryland
+            var options = {
+                map: map,
+                position: defaultLocation,
+                content: "Your location is not found. Here is University of Maryland."
+            };
+
+            var infowindow = new google.maps.InfoWindow(options);
+            map.setCenter(defaultLocation);
+        }
+
+        // function to get the route from your current location to a destination
+        
+        function calcRoute() {
+            var start; // start position
+            if (locDenied == 1) {
+                start = new google.maps.LatLng(38.98707, -76.94253); // University of maryland
+            } else {
+                start = currentLocation;
+            }
+
+            var end = document.getElementById("end").value;
+			console.log(end);
+
+            var request = {
+                origin: start,
+                destination: end,
+                travelMode: google.maps.DirectionsTravelMode.WALKING
+            };
+
+            directionsService.route(request, function (response, status) {
+                if (status == google.maps.DirectionsStatus.OK) {
+                    directionsDisplay.setDirections(response);
+                }
+            });
+        }
+        
+        window.onload = initMap;
+    </script>
 </head>
+
 <body>
-    <div id="container">
-        <div id="header">
-        </div>
+    <h2>Sevice areas near my home</h2>
+    <div id="select">
+        <label for="end">
+            <strong>From current location to: </strong>
+        </label>
+        <select id="end" name="end" onchange="calcRoute();">
+            <option selected="selected">Select a destination</option>
+            <option value="49.19598, -123.177582">Vancouver International Airport</option>
+			<option value="49.29894, -123.14014">Stanley Park</option>
+			<option value="49.2878, -123.1135">Pan Pacific Vancouver Hotel</option>
+			<option value="49.281109, -123.084953">Prototype Coffee</option>
+			<option value="49.28036, -123.10973">Jam Cafe</option>
+            <option value="49.28287, -123.11071">La Taqueria Pinche</option>
+			<option value="49.2678, -123.14861">Rain or Shine Ice Cream</option>
+            <option value="49.341431, -123.11393">Capilano Suspension Bridge Park</option>
+            <option value="49.34045, -123.26699">St. Marks Summit</option>
+            <option value="49.28167, -123.13964">Kitsilano Beach</option>
 
-        <div id="nav">
-            <a href="index.html">Home</a>
-            <a href="interests.html">Interests</a>
-            <a href="portfolio.html">Portfolio</a>
-            <a href="maps.html">Maps</a>
-            <a href="contact.html">Contact</a>
-            
-
-
-        </div>
-
-        <div id="content">
-            <h1>Kristen O'Shea</h1>
-            <img src="images/KOShea.png" alt="Selfie" width="250" height="300">
-            <p>Kristen O’Shea is a <b>Geospatial Data Scientist</b> that has worked on a wide-variety of environmental projects domestically & abroad. A versatilist at heart, she has mapped wild rice in the midwest US, developed restoration prioritization tools for coffee-landscapes in South America and Southeast Asia, explored biodiversity and ecosystem health in fashion commodity sourcing regions world-wide. Currently, she works to provide access and workflows for non-commercial users to integrate climate and remote sensing data into research/decision making as part of the Climate Engine team. She specializes in spatial analysis, data visualization, and capacity building that enables decision makers to make informed management and organizational decisions.
-                <br>
-                Kristen is a <b>strong supporter of women+ in STEM</b> and currently serves as the vice-chair of the Desert Research Institute (DRI) Committee for Inclusion, Diversity, Equity, and Accessibility (IDEA). She is committed to incorporating diversity & inclusion into her work and collaboration efforts, and has completed additional professional development to support this.
-            </p>
-        </div>
-
-        <div id="footer">
-            <p>Thank you for visiting our site!</p>
-        </div>
-
+        </select>
     </div>
-    
+
+    <div id='mapCanvas'></div>
+    <div id='legend' align='left'>
+        <h3>Legend</h3>
+    </div>
 </body>
+
 </html>
