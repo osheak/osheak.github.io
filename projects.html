@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Map with Leaflet</title>
+    
+    <!-- Import Materialize CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+    
+    <!-- Import Leaflet CSS -->
+    <link href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" rel="stylesheet" />
+
+    <!-- Custom Styles for Map -->
+    <style>
+        #map {
+            height: 700px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-wrapper">
+          <a href="index.html" class="brand-logo">Patrick O'Shea</a>
+          <a href="#" data-target="mobile-demo" class="sidenav-trigger">
+            <i class="material-icons">menu</i>
+          </a>
+          <ul class="right hide-on-med-and-down">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Me</a></li>
+            <li><a href="map.html">Map Gallery</a></li>
+            <li><a href="tool.html">App/Tool Gallery</a></li>
+            <li><a href="projects.html">Interactive Project Map</a></li>
+          </ul>
+        </div>
+      </nav>
+
+      <!-- Sidenav for mobile view -->
+      <ul class="sidenav" id="mobile-demo">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Me</a></li>
+        <li><a href="map.html">Map Gallery</a></li>
+        <li><a href="tool.html">App/Tool Gallery</a></li>
+        <li><a href="projects.html">Interactive Project Map</a></li>
+      </ul>
+
+    <div class="container">
+        <h3>Interactive Map</h3>
+        <!-- Map Container -->
+        <div id="map"></div>
+    </div>
+
+    <!-- Import Materialize JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    
+    <!-- Import Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+
+    <script>
+        // Initialize the sidenav
+        document.addEventListener('DOMContentLoaded', function() {
+          const elems = document.querySelectorAll('.sidenav');
+          const instances = M.Sidenav.init(elems);
+        });
+      </script>
+      
+    <script>
+        // Initialize the map and set its view
+        var map = L.map('map').setView([40.730610, -73.935242], 10);
+
+        // Add a Tile Layer (OSM in this case)
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '© OpenStreetMap'
+        }).addTo(map);
+
+        // Add a marker with an interactive pop-up
+        var marker = L.marker([40.730610, -73.935242]).addTo(map);
+
+        // Define the pop-up content with Materialize styles
+        var popupContent = `
+            <div class="card">
+                <div class="card-image">
+                    <img src="https://source.unsplash.com/100x100/?nature,water" alt="Nature">
+                </div>
+                <div class="card-content">
+                    <span class="card-title">New York City</span>
+                    <p>This is a pop-up for New York City. It can include additional details, images, and links.</p>
+                </div>
+                <div class="card-action">
+                    <a href="https://en.wikipedia.org/wiki/New_York_City" target="_blank">Learn More</a>
+                </div>
+            </div>
+        `;
+
+        // Bind the pop-up to the marker
+        marker.bindPopup(popupContent);
+
+        // Open the pop-up on marker click
+        marker.on('click', function() {
+            marker.openPopup();
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Map Gallery</title>
+    
+    <!-- Materialize CSS CDN -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+    <nav>
+        <div class="nav-wrapper">
+          <a href="index.html" class="brand-logo">Patrick O'Shea</a>
+          <a href="#" data-target="mobile-demo" class="sidenav-trigger">
+            <i class="material-icons">menu</i>
+          </a>
+          <ul class="right hide-on-med-and-down">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Me</a></li>
+            <li><a href="map.html">Map Gallery</a></li>
+            <li><a href="tool.html">App/Tool Gallery</a></li>
+            <li><a href="projects.html">Interactive Project Map</a></li>
+          </ul>
+        </div>
+      </nav>
+
+      <!-- Sidenav for mobile view -->
+      <ul class="sidenav" id="mobile-demo">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Me</a></li>
+        <li><a href="map.html">Map Gallery</a></li>
+        <li><a href="tool.html">App/Tool Gallery</a></li>
+        <li><a href="projects.html">Interactive Project Map</a></li>
+      </ul>
+
+      <div class="container">
+        <!-- Page Header -->
+        <header class="center-align">
+            <h1>Map Gallery</h1>
+            <p>Explore various locations with our interactive maps</p>
+        </header>
+
+        <!-- Gallery of Maps -->
+        <div class="row">
+            <!-- Map Card 1 -->
+            <div class="col s12 m4 l3">
+                <div class="card">
+                    <div class="card-image">
+                        <img src="images/map1.png" alt="Map 1"> <!-- Replace with your map image or embed map -->
+                        <span class="card-title">Location 1</span>
+                    </div>
+                    <div class="card-content">
+                        <!-- Tabs -->
+                        <ul class="tabs">
+                            <li class="tab col s3"><a href="#map1-info">Title</a></li>
+                            <li class="tab col s3"><a href="#map1-descr">Description</a></li>
+                            <li class="tab col s3"><a href="#map1-photos">Photos</a></li>
+                        </ul>
+                        <div id="map1-info" class="tab-content active">
+                            <p>Paradise Valley Trail Run Map</p>
+                        </div>
+                        <div id="map1-descr" class="tab-content">
+                            <p>Reviews of Location 1.</p>
+                        </div>
+                        <div id="map1-photos" class="tab-content">
+                            <p>Additional photos of Location 1.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Map Card 2 -->
+            <div class="col s12 m4 l3">
+                <div class="card">
+                    <div class="card-image">
+                        <img src="map2.jpg" alt="Map 2"> <!-- Replace with your map image or embed map -->
+                        <span class="card-title">Location 2</span>
+                    </div>
+                    <div class="card-content">
+                        <!-- Tabs -->
+                        <ul class="tabs">
+                            <li class="tab col s3"><a href="#map2-info">Info</a></li>
+                            <li class="tab col s3"><a href="#map2-reviews">Reviews</a></li>
+                            <li class="tab col s3"><a href="#map2-photos">Photos</a></li>
+                        </ul>
+                        <div id="map2-info" class="tab-content active">
+                            <p>Information about Location 2.</p>
+                        </div>
+                        <div id="map2-reviews" class="tab-content">
+                            <p>Reviews of Location 2.</p>
+                        </div>
+                        <div id="map2-photos" class="tab-content">
+                            <p>Additional photos of Location 2.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Map Card 3 -->
+            <div class="col s12 m4 l3">
+                <div class="card">
+                    <div class="card-image">
+                        <img src="map3.jpg" alt="Map 3"> <!-- Replace with your map image or embed map -->
+                        <span class="card-title">Location 3</span>
+                    </div>
+                    <div class="card-content">
+                        <!-- Tabs -->
+                        <ul class="tabs">
+                            <li class="tab col s3"><a href="#map3-info">Info</a></li>
+                            <li class="tab col s3"><a href="#map3-reviews">Reviews</a></li>
+                            <li class="tab col s3"><a href="#map3-photos">Photos</a></li>
+                        </ul>
+                        <div id="map3-info" class="tab-content active">
+                            <p>Information about Location 3.</p>
+                        </div>
+                        <div id="map3-reviews" class="tab-content">
+                            <p>Reviews of Location 3.</p>
+                        </div>
+                        <div id="map3-photos" class="tab-content">
+                            <p>Additional photos of Location 3.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Map Card 4 -->
+            <div class="col s12 m4 l3">
+                <div class="card">
+                    <div class="card-image">
+                        <img src="map4.jpg" alt="Map 4"> <!-- Replace with your map image or embed map -->
+                        <span class="card-title">Location 4</span>
+                    </div>
+                    <div class="card-content">
+                        <!-- Tabs -->
+                        <ul class="tabs">
+                            <li class="tab col s3"><a href="#map4-info">Info</a></li>
+                            <li class="tab col s3"><a href="#map4-reviews">Reviews</a></li>
+                            <li class="tab col s3"><a href="#map4-photos">Photos</a></li>
+                        </ul>
+                        <div id="map4-info" class="tab-content active">
+                            <p>Information about Location 4.</p>
+                        </div>
+                        <div id="map4-reviews" class="tab-content">
+                            <p>Reviews of Location 4.</p>
+                        </div>
+                        <div id="map4-photos" class="tab-content">
+                            <p>Additional photos of Location 4.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Materialize JS & jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script>
+        // Initialize the sidenav
+        document.addEventListener('DOMContentLoaded', function() {
+          const elems = document.querySelectorAll('.sidenav');
+          const instances = M.Sidenav.init(elems);
+        });
+      </script>
+    
+    <script>
+        
+        // Initialize Materialize Tabs
+        document.addEventListener('DOMContentLoaded', function() {
+            var elems = document.querySelectorAll('.tabs');
+            M.Tabs.init(elems, {});
+        });
+        
+        // JavaScript to handle custom tab functionality
+        document.addEventListener('click', function(event) {
+            if (event.target.classList.contains('tab')) {
+                const tabId = event.target.getAttribute('href').substring(1);
+                const tabs = event.target.closest('.card-content').querySelectorAll('.tab-content');
+                tabs.forEach(tab => tab.classList.remove('active'));
+                document.getElementById(tabId).classList.add('active');
+            }
+        });
+    </script>
+</body>
+</html>

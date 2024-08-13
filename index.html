@@ -1,41 +1,75 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Home Page</title>
+    <title>Patrick O'Shea</title>
+    
+    <!-- Materialize CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+
+    <!-- Materialize Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- Import Font Awesome for Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="container">
-        <div id="header">
+    <nav>
+        <div class="nav-wrapper">
+          <a href="index.html" class="brand-logo">Patrick O'Shea</a>
+          <a href="#" data-target="mobile-demo" class="sidenav-trigger">
+            <i class="material-icons">menu</i>
+          </a>
+          <ul class="right hide-on-med-and-down">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Me</a></li>
+            <li><a href="map.html">Map Gallery</a></li>
+            <li><a href="tool.html">App/Tool Gallery</a></li>
+            <li><a href="projects.html">Interactive Project Map</a></li>
+          </ul>
         </div>
+      </nav>
+      
+      <!-- Sidenav for mobile view -->
+      <ul class="sidenav" id="mobile-demo">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Me</a></li>
+        <li><a href="map.html">Map Gallery</a></li>
+        <li><a href="tool.html">App/Tool Gallery</a></li>
+        <li><a href="projects.html">Interactive Project Map</a></li>
+      </ul>
 
-        <div id="nav">
-            <a href="index.html">Home</a>
-            <a href="interests.html">Interests</a>
-            <a href="portfolio.html">Portfolio</a>
-            <a href="maps.html">Maps</a>
-            <a href="contact.html">Contact</a>
-            
-
-
+<!-- Navigation Bar or Footer Section -->
+<div class="container">
+    <div class="row">
+        <div class="col s12">
+            <h5>Connect with Me</h5>
+            <!-- LinkedIn Icon with Link -->
+            <a href="https://www.linkedin.com/in/pmoshea/" target="_blank" class="btn-floating btn-large waves-effect waves-light blue">
+                <i class="fab fa-linkedin"></i>
+            </a>
+            <!-- GitHub Icon with Link -->
+            <a href="https://github.com/osheap" target="_blank" class="btn-floating btn-large waves-effect waves-light black">
+                <i class="fab fa-github"></i>
+            </a>
         </div>
-
-        <div id="content">
-            <h1>Kristen O'Shea</h1>
-            <img src="images/KOShea.png" alt="Selfie" width="250" height="300">
-            <p>Kristen O’Shea is a <b>Geospatial Data Scientist</b> that has worked on a wide-variety of environmental projects domestically & abroad. A versatilist at heart, she has mapped wild rice in the midwest US, developed restoration prioritization tools for coffee-landscapes in South America and Southeast Asia, explored biodiversity and ecosystem health in fashion commodity sourcing regions world-wide. Currently, she works to provide access and workflows for non-commercial users to integrate climate and remote sensing data into research/decision making as part of the Climate Engine team. She specializes in spatial analysis, data visualization, and capacity building that enables decision makers to make informed management and organizational decisions.
-                <br>
-                Kristen is a <b>strong supporter of women+ in STEM</b> and currently serves as the vice-chair of the Desert Research Institute (DRI) Committee for Inclusion, Diversity, Equity, and Accessibility (IDEA). She is committed to incorporating diversity & inclusion into her work and collaboration efforts, and has completed additional professional development to support this.
-            </p>
-        </div>
-
-        <div id="footer">
-            <p>Thank you for visiting our site!</p>
-        </div>
-
     </div>
-    
+</div>
+<!-- Materialize JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+<!-- Custom JavaScript -->
+<script src="js/script.js"></script>
+
+<script>
+  // Initialize the sidenav
+  document.addEventListener('DOMContentLoaded', function() {
+    const elems = document.querySelectorAll('.sidenav');
+    const instances = M.Sidenav.init(elems);
+  });
+</script>
 </body>
 </html>

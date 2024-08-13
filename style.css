@@ -1,118 +1,48 @@
-#container {
-    width: 960px;
-    margin: 0 auto;
+/* Custom styles for the navbar */
+.nav-wrapper .brand-logo {
+    padding-left: 20px; /* Add padding to move the logo away from the edge */
+    background-color: transparent;
 }
 
-#header {
-    height: 180px;
-    margin: 10px 0 0 0;
-    background: url(images/patima.jpg);
+@media screen and (max-width: 992px) {
+    .nav-wrapper .brand-logo {
+        padding-left: 15px; /* Adjust padding for smaller screens if needed */
+    }
 }
 
-#content {
-    border-right: 15px solid blue;
-    border-left: 15px solid blue;
-    border-bottom: 15px solid blue;
-    padding: 15px 20px;
+body {
+    font-family: 'Roboto', sans-serif;
 }
 
-#movies {
-    border-right: 15px solid blue;
-    border-left: 15px solid blue;
-    padding: 15px 20px;
+h1 {
+    color: #2c3e50;
 }
 
-#books {
-    border-right: 15px solid blue;
-    border-left: 15px solid blue;
-    padding: 15px 20px;
+.custom-collection-item {
+    background-color: #bbdefb; /* blue lighten-4 */
+    border: none; /* Remove default border */
+    color: #0d47a1; /* Dark blue text to match the card-panel style */
+    padding: 10px 15px;
+    border-radius: 4px;
+    margin-bottom: 10px; /* Space between items */
 }
 
-table {
-    width: 75%;
-    border-collapse: collapse;
+.card-image {
+    height: 400px; /* Adjust height as needed */
 }
 
-table, th, td {
-    border: 2px solid black;
+.card-content {
+    padding: 10px;
 }
 
-th, td {
-    padding: 5px;
-    text-align: left;
+.tabs {
+    margin-bottom: 0;
 }
 
-th {
-    background-color: #0980f0;
+.tab-content {
+    display: none;
 }
 
-#quote {
-    border-right: 15px solid blue;
-    border-left: 15px solid blue;
-    border-bottom: 15px solid blue;
-    padding: 15px 20px;
-}
-
-#nav {
-    width: 960px;
-    overflow: hidden;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-#nav a {
-    width: 191px;
-    height: 35px;
-    float: left;
-    padding: 12px 0 0 0;
-    background: url(images/nav.jpg);
-    border-right: 1px outset #006666;
-    text-align: center;
-    text-decoration: none;
-    font-weight: bold;
-    color: yellow;
-}
-
-#portfolio {
-    border-right: 15px solid blue;
-    border-left: 15px solid blue;
-    border-bottom: 15px solid blue;
-    padding: 15px 20px;
-}
-
-.portfolio-item img {
-    width: 100%; 
-    height: auto; 
-    max-width: 600px; 
-    display: block; 
-    margin: 0 auto; 
-}
-
-p {
-    font-family: 'Arial';
-    font-size:20px;
-}
-
-.Gallery {
-    border-right: 15px solid blue;
-    border-left: 15px solid blue;
-    border-bottom: 15px solid blue;
-    padding: 15px 20px; 
-}
-
-.Address {
-    border-right: 15px solid blue;
-    border-left: 15px solid blue;
-    border-bottom: 15px solid blue;
-    padding: 15px 20px; 
-}
-
-#nav a:hover {
-    background: url(images/nav_hover.jpg);
-    color: magenta;
-}
-
-#footer {
-    color: blue;
-    text-align: center;
+.tab-content.active {
+    display: block;
 }
