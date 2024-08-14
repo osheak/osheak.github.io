@@ -80,7 +80,7 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 }).addTo(map);
 
 // Fetch the JSON data and create markers with popups
-fetch('projects_web.json')
+fetch('projects_web_2.json')
     .then(response => response.json())
     .then(data => {
         data.forEach(item => {
