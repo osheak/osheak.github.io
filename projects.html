@@ -11,11 +11,12 @@
     <!-- Import Leaflet CSS -->
     <link href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" rel="stylesheet" />
 
-    <!-- Custom CSS -->
+    <!--CSS -->
     <link rel="stylesheet" href="css/style.css">
 
 </head>
 <body>
+    <!--Nav Bar For Medium & Large Screens-->
     <nav>
         <div class="nav-wrapper">
           <a href="index.html" class="brand-logo">Patrick O'Shea</a>
@@ -31,7 +32,7 @@
         </div>
       </nav>
 
-      <!-- Sidenav for mobile view -->
+       <!--Nav Bar For Small Screens -->
       <ul class="sidenav" id="mobile-demo">
         <li><a href="index.html">About Me</a></li>
         <li><a href="map.html">Map Gallery</a></li>
@@ -62,7 +63,6 @@
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
 
     <script>
-        // Initialize the sidenav
         document.addEventListener('DOMContentLoaded', function() {
           const elems = document.querySelectorAll('.sidenav');
           const instances = M.Sidenav.init(elems);
@@ -70,10 +70,10 @@
       </script>
 
     <script>
-      // Initialize the map and set its view
+      // Initialize the map 
     var map = L.map('map').setView([28.7041, 77.1025], 10);
 
-    // Add a Tile Layer (OSM in this case)
+    // Add a Tile Layer
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
         attribution: '© OpenStreetMap'
@@ -82,7 +82,7 @@
     // Add a marker with an interactive pop-up
     var marker_1 = L.marker([28.7041, 77.1025]).addTo(map);
 
-    // Define the pop-up content with Materialize styles
+    // Define the pop-up content
     var popupContent_1 = `
         <div class="card">
             <div class="card-content">
@@ -108,7 +108,7 @@
     // Add a marker with an interactive pop-up
     var marker_2 = L.marker([35.687, -105.9378]).addTo(map);
 
-    // Define the pop-up content with Materialize styles
+    // Define the pop-up content
     var popupContent_2 = `
         <div class="card">
             <div class="card-content">
@@ -134,7 +134,7 @@
      // Add a marker with an interactive pop-up
      var marker_3 = L.marker([40.01499, -105.27055]).addTo(map);
 
-    // Define the pop-up content with Materialize styles
+    // Define the pop-up content
     var popupContent_3 = `
         <div class="card">
             <div class="card-content">

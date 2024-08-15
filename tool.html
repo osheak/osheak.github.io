@@ -8,11 +8,12 @@
     <!-- Materialize CSS CDN -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
 
-    <!-- Custom CSS -->
+    <!--CSS -->
     <link rel="stylesheet" href="css/style.css">
 
 </head>
 <body>
+    <!--Nav Bar For Medium & Large Screens-->
     <nav>
         <div class="nav-wrapper">
           <a href="index.html" class="brand-logo">Patrick O'Shea</a>
@@ -28,7 +29,7 @@
         </div>
     </nav>
 
-    <!-- Sidenav for mobile view -->
+    <!--Nav Bar For Small Screens -->
     <ul class="sidenav" id="mobile-demo">
         <li><a href="index.html">About Me</a></li>
         <li><a href="map.html">Map Gallery</a></li>
@@ -45,9 +46,9 @@
             </span>
         </header>
 
-        <!-- Gallery of Maps -->
+        <!-- Gallery of Apps -->
         <div class="row">
-            <!-- Map Card 1 -->
+            <!-- App Card 1 -->
             <div class="col s12 m6 l6">
                 <div class="card">
                     <div class="card-image">
@@ -74,7 +75,7 @@
                 </div>
             </div>
 
-            <!-- Map Card 2 -->
+            <!-- App Card 2 -->
             <div class="col s12 m6 l6">
                 <div class="card">
                     <div class="card-image">
@@ -101,7 +102,7 @@
                 </div>
             </div>
 
-            <!-- Map Card 3 -->
+            <!-- App Card 3 -->
             <div class="col s12 m6 l6">
                 <div class="card">
                     <div class="card-image">
@@ -129,7 +130,7 @@
                 </div>
             </div>
 
-            <!-- Map Card 4 -->
+            <!-- App Card 4 -->
             <div class="col s12 m6 l6">
                 <div class="card">
                     <div class="card-image">
@@ -161,13 +162,11 @@
     <!-- Materialize JS & jQuery -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script>
-        // Initialize the sidenav
         document.addEventListener('DOMContentLoaded', function() {
             M.Sidenav.init(document.querySelectorAll('.sidenav'));
             M.Tabs.init(document.querySelectorAll('.tabs'));
         });
         
-        // JavaScript to handle custom tab functionality
         document.addEventListener('click', function(event) {
             if (event.target.classList.contains('tab')) {
                 const tabId = event.target.getAttribute('href').substring(1);
