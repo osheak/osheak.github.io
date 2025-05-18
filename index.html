@@ -1,41 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Home Page</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <title>Summit County Parcel Explorer</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      text-align: center;
+    }
+    header {
+      padding: 2em;
+      background-color: #f2f2f2;
+    }
+    iframe {
+      width: 100%;
+      height: 90vh;
+      border: none;
+    }
+  </style>
 </head>
 <body>
-    <div id="container">
-        <div id="header">
-        </div>
 
-        <div id="nav">
-            <a href="index.html">Home</a>
-            <a href="interests.html">Interests</a>
-            <a href="portfolio.html">Portfolio</a>
-            <a href="maps.html">Maps</a>
-            <a href="contact.html">Contact</a>
-            
+  <header>
+    <h1>Summit County Home Suitability Explorer</h1>
+    <p>Residential parcels with 3+ bedrooms, 2+ bathrooms, value under $300,000, and over 1500 sq ft</p>
+  </header>
 
+  <section style="padding: 2em; background-color: #f9f9f9;">
+    <h2>Why This Map Matters</h2>
+    <p>
+      Young families face serious challenges in today’s housing market:
+    </p>
+    <ul style="text-align: left; max-width: 800px; margin: 1em auto; font-size: 1.1em; line-height: 1.6;">
+      <li><strong>71%</strong> of younger millennial buyers were first-time homebuyers (National Association of REALTORS®, 2024).</li>
+      <li><strong>33%</strong> received help with their down payment (National Association of REALTORS®, 2024).</li>
+      <li><strong>43%</strong> of millennials are balancing student loan debt with saving for a home (National Association of REALTORS®, 2024).</li>
+      <li><strong>$2,182</strong> is the average monthly cost of full-time childcare for two children (New York Post, 2024).</li>
+      <li><strong>12%</strong> of homebuyers are younger millennials; <strong>3%</strong> are Gen Z buyers (National Association of REALTORS®, 2024).</li>
+      <li>Low housing inventory is keeping prices high and limiting options (Amadeo, 2024).</li>
+    </ul>
+    <p>
+      This spatial analysis helps young families explore affordable housing options based on their needs.
+    </p>
+  </section>
+  
+  
+  <!-- Embed the renamed map/index.html -->
+  <iframe src="map/map.html"></iframe>
 
-        </div>
-
-        <div id="content">
-            <h1>Kristen O'Shea</h1>
-            <img src="images/KOShea.png" alt="Selfie" width="250" height="300">
-            <p>Kristen O’Shea is a <b>Geospatial Data Scientist</b> that has worked on a wide-variety of environmental projects domestically & abroad. A versatilist at heart, she has mapped wild rice in the midwest US, developed restoration prioritization tools for coffee-landscapes in South America and Southeast Asia, explored biodiversity and ecosystem health in fashion commodity sourcing regions world-wide. Currently, she works to provide access and workflows for non-commercial users to integrate climate and remote sensing data into research/decision making as part of the Climate Engine team. She specializes in spatial analysis, data visualization, and capacity building that enables decision makers to make informed management and organizational decisions.
-                <br>
-                Kristen is a <b>strong supporter of women+ in STEM</b> and currently serves as the vice-chair of the Desert Research Institute (DRI) Committee for Inclusion, Diversity, Equity, and Accessibility (IDEA). She is committed to incorporating diversity & inclusion into her work and collaboration efforts, and has completed additional professional development to support this.
-            </p>
-        </div>
-
-        <div id="footer">
-            <p>Thank you for visiting our site!</p>
-        </div>
-
-    </div>
-    
 </body>
 </html>
