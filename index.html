@@ -273,8 +273,8 @@
   <div class="page">
     <header>
       <div class="title">
-        <h1>Women+ In Geospatial Speakers</h1>
-        <p>Filter by tags, search names, and discover great fits fast.</p>
+        <h1>Women+ In Geospatial Speakers Database</h1>
+        <p>Find your next speaker from our diverse talented community</p>
       </div>
 
       <div class="controls">
@@ -339,8 +339,7 @@
       const response = await fetch(SHEET_CSV_URL);
       const csvText = await response.text();
       speakers = parseCSV(csvText);
-      console.log("Raw CSV:", csvText);
-      console.log("Parsed speakers:", speakers);
+      console.log("All fields:", Object.keys(speakers[0]));
       
       // Build tag list dynamically from the sheet data
       allTags = Array.from(new Set(speakers.flatMap(s => s.tags))).sort();
@@ -363,7 +362,7 @@
       const values = line.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/); 
       const s = {};
       headers.forEach((header, i) => {
-        let val = values[i]?.replace(/^"|"$/g, "").trim() || "";
+        let val = values[i]?.replace(/^"+|"+$/g, "").trim() || "";
         
         // Data Transformation
         if (header === 'tags') s[header] = val ? val.split(",").map(t => t.trim()) : [];
@@ -439,7 +438,7 @@
           <div class="sub">Updated ${s.lastUpdated || 'N/A'}</div>
           <div class="cta">
             <a class="linkBtn" onclick="window.open('${s.linkedIn}', '_blank')" style="cursor:pointer">View</a>
-            <a class="linkBtn primary" href="#">Contact</a>
+            ${s.email ? `<a class="linkBtn primary" href="mailto:${s.email}">Contact</a>` : `<a class="linkBtn primary" href="#">Contact</a>`}
           </div>
         </div>
       `;
